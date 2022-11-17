@@ -5,8 +5,8 @@ import ButtonComponent from '../../../Components/ButtonComponent';
 
 const makeAppointment = () => {
     return (
-       <section className='my-16'>
-       <div className="hero mb-0 mt-48" style={{backgroundImage:`url(${background})`}}>
+       <section className='my-16 '>
+       <div className="hero mb-0 mt-48 pb-8" style={{backgroundImage:`url(${background})`}}>
             <div className="hero-content flex-col lg:flex-row pb-0 ">
                 <img src={doctor} alt="doctor images" className="-mt-32" />
                 <div className='text-white'>

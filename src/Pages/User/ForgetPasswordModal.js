@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { StateContext } from '../../Context/StateProvider';
 
 const ForgetPasswordModal = () => {
-    const {forgetPassModal,setForgetPassModal} = useContext(StateContext)
+    const {setForgetPassModal} = useContext(StateContext)
     const { register, handleSubmit, formState: {errors} } = useForm();
     const { 
         forgetUserPassword

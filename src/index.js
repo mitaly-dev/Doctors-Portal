@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-day-picker/dist/style.css';
+import "react-datepicker/dist/react-datepicker.css";
 import StateProvider from './Context/StateProvider';
 import AuthProvider, { AuthContext } from './Context/AuthProvider';
 import {

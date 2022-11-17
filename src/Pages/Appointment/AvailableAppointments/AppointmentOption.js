@@ -9,7 +9,7 @@ const AppointmentOption = ({option,refetch}) => {
   const {modalOpen,setModalOpen} = useContext(StateContext)
   
     return (
-        <div className="card shadow-xl pt-4">
+        <div className="card shadow-xl pt-4 mb-3">
         <div className="card-body text-center text-accent">
           <h2 className="font-semibold  text-xl text-secondary">{name}</h2>
           <p className=''>{slots.length?slots[0] : 'Try another day'}</p>

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import ForgetPasswordModal from './ForgetPasswordModal';
 import { StateContext } from '../../Context/StateProvider';
 import SocialLogin from './SocialLogin';
+import useToken from '../../Hook/useToken';
 
 const Login = () => {
     const {forgetPassModal,setForgetPassModal} = useContext(StateContext)
@@ -16,17 +17,24 @@ const Login = () => {
         userSignIn,
         signInWithGoogle} = useContext(AuthContext)
 
-        let navigate = useNavigate()
-        let location = useLocation()
-        let from = location.state?.from?.pathname || '/'
+    const [email,setEmail] = useState('')
+    const [token] = useToken(email)
 
+    let navigate = useNavigate()
+    let location = useLocation()
+    let from = location.state?.from?.pathname || '/'
+    
+    if(token){
+        navigate(from,{replace:true})
+    }
+    
     const userSigninHandle=data=>{
         const email = data.email 
         const password = data.password
 
         userSignIn(email,password)
         .then(result=>{
-            navigate(from,{replace:true})
+            setEmail(email)
         })
         .catch(error=>toast.error(error.message,{autoClose:1000}))
     }

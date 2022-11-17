@@ -27,9 +27,9 @@ const AvailableAppointments = () => {
     }
 
     return (
-        <section className='px-28 py-16'>
-            <p className='text-secondary font-semibold text-center py-16 text-[22px]'>Available Appointments on {date}</p>
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <section className='px-5 md:px-10 lg:px-28 py-5 md:py-10 lg:py-16'>
+            <p className='text-secondary font-semibold text-center py-6 sm:py-16 text-[22px]'>Available Appointments on {date}</p>
+            <div className='sm:grid sm:grid-cols-2 md:grid-cols-3 gap-8'>
             {
                 appointmentOptions.map(option=><AppointmentOption key={option._id} option={option} refetch={refetch}></AppointmentOption>)
             }

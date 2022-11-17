@@ -5,17 +5,26 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { toast } from 'react-toastify';
 import SocialLogin from './SocialLogin';
+import useToken from '../../Hook/useToken';
+import { useState } from 'react';
 
 const Signup = () => {
+    const { register, handleSubmit, formState: {errors} } = useForm();
+    const navigate = useNavigate()
+    const [email,setEmail] = useState('')
+    const [token] = useToken(email)
+
     const {
         createUser,
         emailValidation,
         updateUserProfile,
         logOut
     } = useContext(AuthContext)
-    const navigate = useNavigate()
-    const { register, handleSubmit, formState: {errors} } = useForm();
-
+   
+    
+    if(token){
+        navigate('/login')
+    }
     const createUserHandle=data=>{
        const email = data.email 
        const name = data.name 
@@ -29,15 +38,33 @@ const Signup = () => {
        createUser(email,password)
        .then(result=>{
         emailValidation(email)
-        .then(()=>toast.success('Please verify your email',{autoClose:1000}))
+        .then(()=>{
+            updateUserProfile(profile)
+            .then(()=>{
+                userDataInDB(name,email)
+                logOut()
+            })
+            .catch((error)=>console.log(error.message))
+        })
         .catch((error)=>toast.error(error.message,{autoClose:1000}))
-        updateUserProfile(profile)
-        .then(()=>{})
-        .catch((error)=>console.log(error.message))
-        logOut()
-        navigate('/login')
        })
-       .catch(error=>toast.error(error.message)) 
+       .catch(error=>toast.error(error.message,{autoClose:1000})) 
+    }
+
+    const userDataInDB=(name,email)=>{
+        fetch(`http://localhost:5000/users`,{
+            method:'POST',
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({name,email})
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            toast.success('Please verify your email',{autoClose:1000})
+            setEmail(email)
+        })
+        .catch(error=>console.log(error.message))
     }
 
     return (

@@ -4,7 +4,7 @@ import footer from '../assets/images/footer.png'
 
 const Footer = () => {
     return (
-        <footer className=" text-accent p-16 px-28" style={{backgroundImage:`url(${footer})`,backgroundSize:'cover',backgroundRepeat:'no-repeat'}}>
+        <footer className=" text-accent p-16 px-5 md:px-10 lg:px-28" style={{backgroundImage:`url(${footer})`,backgroundSize:'cover',backgroundRepeat:'no-repeat'}}>
             <div className='footer '>
                 <div>
                     <span className="footer-title">Services</span> 

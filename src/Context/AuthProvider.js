@@ -47,6 +47,7 @@ const AuthProvider = ({children}) => {
 
     // log out 
     const logOut =()=>{
+        localStorage.removeItem('Doctors-Portal-Token')
         return signOut(auth)
     }
 
